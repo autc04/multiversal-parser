@@ -1,4 +1,4 @@
-mkdir -p defs
+mkdir ../multiversal || true
 mkdir -p out
 for x in "$1"/*.h; do
     name=`basename -s .h "$x"`
@@ -6,5 +6,5 @@ for x in "$1"/*.h; do
         name=MacTypes
     fi
     echo $name
-    ./build/ParseExecutorHeaders $x overrides/$name.yaml > defs/$name.yaml;
+    ./build/ParseExecutorHeaders $x overrides/$name.yaml > ../multiversal/defs/$name.yaml;
 done

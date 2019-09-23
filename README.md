@@ -1,10 +1,11 @@
-Multiversal Interfaces
-======================
+Multiversal Interfaces - Executor Header Parser
+===============================================
 
-Work in progress.
-The plan is to parse header files from the executor project,
-convert them to an intermediate (YAML) representation, and then generate
-C/C++ header files from them again for use with Retro68.
+This repository contains a program that parses header files from Executor
+and convers them to an intermediate (YAML) representation.
 
-As Executor was a clean-room implementation of MacOS, the resulting header files will
-be freely redistributable.
+As Executor was a clean-room implementation of MacOS and is now available
+under a liberal license, the resulting files are freely redistributable.
+The companion repository `multiversal` contains the YAML files as well as
+scripts for generating actual headers and libraries.
+
