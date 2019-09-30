@@ -780,7 +780,7 @@ trap:
 
 			mfs["executor"] = true;
 			mfs["file_trap"] = "mfs";
-			mfs["trap"] = $9;
+			mfs["trap"] = toInt($9) & ~0x200;
 			mfs["returnreg"] = "D0";
 			mfs["args"][0]["register"] = "A0";
 			mfs["args"][1]["register"] = "TrapBit<0x400>";
@@ -814,7 +814,7 @@ trap:
 
 			mfs["executor"] = true;
 			mfs["file_trap"] = "mfs";
-			mfs["trap"] = $9;
+			mfs["trap"] = toInt($9) & ~0x200;
 			mfs["dispatcher"] = $13;
 			mfs["selector"] = $11;
 			mfs["returnreg"] = "D0";
