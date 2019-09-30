@@ -34,8 +34,12 @@ const std::vector<SpecialStyle> specialStyles =
     { ".*/comment", YAML::Literal },
     { ".*/code", YAML::Literal },
     { ".*/m68k-inline", YAML::Flow },
-    { ".*/m68k-inline/", YAML::Hex },
-    { ".*/trap", YAML::Hex }
+};
+
+const std::vector<std::regex> hexFields = { 
+    std::regex{".*/trap"},
+    std::regex{".*/address"},
+    std::regex{".*/m68k-inline"}
 };
 
 void output(YAML::Emitter& yamlout, const YAML::Node& node, std::string path)
@@ -78,14 +82,24 @@ void output(YAML::Emitter& yamlout, const YAML::Node& node, std::string path)
         if(scalar == "on" || scalar == "off")
             yamlout << YAML::DoubleQuoted;
 
-        /*char *endptr;
-        std::string scalar = n.Scalar();
+        char *endptr;
         long long parsed = std::strtoll(scalar.c_str(), &endptr, 0);
         if(!scalar.empty() && !*endptr)
         {
-            yamlout << parsed;
+            bool hex = false;
+            for(const auto& re : hexFields)
+                if(std::regex_match(path, re))
+                    hex = true;
+            if(hex)
+            {
+                std::ostringstream tmp;
+                tmp << "0x" << std::hex << std::uppercase << parsed;
+                yamlout << tmp.str();
+            }
+            else
+                yamlout << n;
         }
-        else*/
+        else
             yamlout << n;
 
         yamlout << YAML::Auto;
