@@ -67,3 +67,40 @@
         type: "ULONGINT*"
     inline: "*(ULONGINT*)0x020C = (mactimepointer)"
   
+# ####
+
+- function:
+    name: c2pstrcpy
+    args:
+      - name: dst
+        type: Str255
+      - name: src
+        type: const char*
+    carbon: only
+
+- function:
+    name: p2cstrcpy
+    args:
+      - name: dst
+        type: char *
+      - name: src
+        type: ConstStr255Param
+    carbon: only
+
+- function:
+    name: CopyCStringToPascal
+    args:
+      - name: src
+        type: const char*
+      - name: dst
+        type: Str255
+    carbon: only
+
+- function:
+    name: CopyPascalStringToC
+    args:
+      - name: src
+        type: ConstStr255Param
+      - name: dst
+        type: char *
+    carbon: only
