@@ -1,0 +1,24 @@
+- function:
+    name: GetPortTextFont
+    args:
+      - name: p
+        type: CGrafPtr
+    return: short
+    carbon: only
+    
+- function:
+    name: GetPortTextSize
+    args:
+      - name: p
+        type: CGrafPtr
+    return: short
+    carbon: only
+
+- function:
+    name: QDFlushPortBuffer
+    args:
+      - name: p
+        type: CGrafPtr
+      - name: rgn
+        type: RgnHandle
+    carbon: only
