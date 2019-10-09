@@ -132,7 +132,7 @@
 	void declare(YAML::Node node)
 	{
 		things.push_back(std::move(node));
-		if(node.begin()->second["name"])
+		if(node.begin()->second.IsMap() && node.begin()->second["name"])
 			names[node.begin()->second["name"].as<std::string>()] = things.size() - 1;
 	}
 
@@ -915,17 +915,18 @@ size_assertion:
 executor_only:
 		comments EXECUTOR_ONLY
 		{
-			if(things.size() && things.back().begin()->first.as<std::string>() == "executor_only")
-			{				
-				things.back().begin()->second["code"]
-					= things.back().begin()->second["code"].as<std::string>() + "\n"
+			if(things.size() && things.back()["verbatim"].IsDefined())
+			{
+				things.back()["verbatim"] = 
+					things.back()["verbatim"].as<std::string>() + "\n"
 					+ ($1.empty() ? $2 : "/* " + $1 + " */\n" + $2);
 			}
 			else
 			{
 				YAML::Node node;
-				node["code"] = $1.empty() ? $2 : "/* " + $1 + " */\n" + $2;
-				declare(wrap("executor_only", node));
+				node["only-for"] = "Executor";
+				node["verbatim"] = $1.empty() ? $2 : "/* " + $1 + " */\n" + $2;
+				declare(node);
 			}
 		}
 	;

@@ -1,5 +1,4 @@
 mkdir ../multiversal || true
-mkdir -p out
 for x in "$1"/*.h; do
     name=`basename -s .h "$x"`
     if [ "$name" = "ExMacTypes" ]; then

@@ -32,6 +32,7 @@ public:
 const std::vector<SpecialStyle> specialStyles =
 {
     { ".*/comment", YAML::Literal },
+    { ".*/verbatim", YAML::Literal },
     { ".*/code", YAML::Literal },
     { ".*/m68k-inline", YAML::Flow },
 };
