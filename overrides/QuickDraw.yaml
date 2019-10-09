@@ -1,24 +1,39 @@
-- function:
+
+- api: carbon
+  function:
     name: GetPortTextFont
     args:
       - name: p
         type: CGrafPtr
-    return: short
-    carbon: only
-    
-- function:
+    return: int16_t
+
+# ####
+
+- api: carbon
+  function:
     name: GetPortTextSize
     args:
       - name: p
         type: CGrafPtr
-    return: short
-    carbon: only
+    return: int16_t
 
-- function:
+# ####
+
+- api: carbon
+  function:
     name: QDFlushPortBuffer
     args:
       - name: p
         type: CGrafPtr
       - name: rgn
         type: RgnHandle
-    carbon: only
+
+- api: classic
+  typedef:
+    name: CGrafPtr
+    type: CGrafPort*
+
+- api: carbon
+  typedef:
+    name: CGrafPtr
+    type: GrafPtr
