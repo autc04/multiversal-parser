@@ -31,3 +31,20 @@
           name: bounds
     inline: "*(bounds) = (window)->portRect"
     noinline: carbon
+
+- api: carbon
+  function:
+    name: GetWindowPort
+    args:
+      - name: w
+        type: WindowRef
+    return: CGrafPtr
+
+- api: carbon
+  function:
+    name: InvalWindowRect
+    args:
+      - name: w
+        type: WindowRef
+      - name: r
+        type: const Rect*
